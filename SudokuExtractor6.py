@@ -13,9 +13,9 @@ def show_digits(digits, colour=255):
     # 给每一个数字添加白色边框
     with_border = [cv2.copyMakeBorder(img.copy(), 1, 1, 1, 1, cv2.BORDER_CONSTANT, None, colour) for img in digits]
 
-    for i in range(9):
+    for i in range(6):
         # axis=1 沿着水平方向进行拼接，把数组拼接成单独的9行
-        row = np.concatenate(with_border[i * 9:((i + 1) * 9)], axis=1)
+        row = np.concatenate(with_border[i * 6:((i + 1) * 6)], axis=1)
         rows.append(row)
     # axis=0沿着垂直方向进行拼接，把每一行拼在一起
     img = np.concatenate(rows, axis=0)
@@ -173,11 +173,11 @@ def infer_grid(img):
     # 数独图片是正方形，把 边长/9 作为步长来确定数独中每个方框的坐标
     squares = []
     side = img.shape[:1]
-    step = side[0] / 9
+    step = side[0] / 6
 
     # 从左到右，再从上到下
-    for j in range(9):
-        for i in range(9):
+    for j in range(6):
+        for i in range(6):
             p1 = (i * step, j * step)  # Top left corner of a bounding box
             p2 = ((i + 1) * step, (j + 1) * step)  # Bottom right corner of bounding box
             squares.append((p1, p2))

@@ -10,3 +10,4 @@
 ##### 3. Prerequisites
 
 if you want to train yourself model, first run the CNN_MNIST.py， then run CNN_LOCAL.py，or else the identify accruate is not so good
+

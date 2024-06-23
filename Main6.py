@@ -1,8 +1,8 @@
 import os
 import cv2
-from SudokuExtractor import extract_sudoku
-from SudokuSolver import solve
-from NumberExtractor import extract_number, display_sudoku
+from SudokuExtractor6 import extract_sudoku
+from SudokuSolver6 import solve6
+from NumberExtractor6 import extract_number6, display_sudoku6
 import numpy as np
 from PIL import Image, ImageDraw, ImageFont
 def save_result_img(data):
@@ -53,20 +53,20 @@ for file in files:
     path = filePath + file
 
     image_ori = cv2.imread(path, 0)
-    ratio = image_ori.shape[0] / 540
+    ratio = image_ori.shape[0] / 300
     w = round(image_ori.shape[1] / ratio)
-    image_resize = cv2.resize(image_ori, (w, 540))
+    image_resize = cv2.resize(image_ori, (w, 300))
 
     image = extract_sudoku(path)
-    image_show = cv2.resize(image, (540, 540))
+    image_show = cv2.resize(image, (300, 300))
 
-    result = extract_number(image)
-    # display_sudoku(result)
-    result = solve(result)
-    save_result_img(result)
-    if result is not None:
+    result = extract_number6(image)
+    # display_sudoku6(result)
+    result1 = solve6(result)
+    # save_result_img(result)
+    if result1 is not None:
         print("Solution is:")
-        display_sudoku(result)
+        display_sudoku6(result)
     else:
         print("No Solution!")
 
